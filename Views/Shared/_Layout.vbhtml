@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@Code
+    Dim currentController = ViewContext.RouteData.Values("controller").ToString().ToLower()
+    Dim currentAction = ViewContext.RouteData.Values("action").ToString().ToLower()
+End Code
+
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -61,9 +67,19 @@
             border-radius: 4px;
         }
 
-            ::-webkit-scrollbar-thumb:hover {
-                background: #6b7280;
-            }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        .nav-link.active {
+            background-color: rgba(16, 185, 129, 0.1); /* bg-green-500/10 */
+            color: #34d399; /* text-green-400 */
+            border-left: 4px solid #10b981; /* border-green-500 */
+        }
+
+        .nav-link:not(.active):hover {
+            background-color: #374151; /* bg-gray-700 */
+        }
     </style>
 
     @RenderSection("Head", required:=False)
@@ -74,35 +90,53 @@
         <aside class="sidebar w-64 p-6 hidden lg:flex flex-col justify-between">
             <div>
                 <div class="flex items-center gap-3 mb-10">
-                    <div class="bg-green-500 p-2 rounded-lg">
-                        <i data-lucide="shield-check" class="text-white"></i>
+                    <div class="bg-green-600 p-2 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-check" class="lucide lucide-shield-check text-white"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
                     </div>
                     <h1 class="text-xl font-bold text-white">SGTF</h1>
                 </div>
+                <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Menú Principal</h2>
                 <nav class="flex flex-col gap-2">
-                    <a href="@Url.Action("Index", "Home")" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-700">
+                    <a href="@Url.Action("Index", "Home")"
+                       class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg transition-colors @(If(currentController = "home", "active", ""))"
+                       data-section="dashboard">
                         <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
                     </a>
-                    <a href="@Url.Action("Index", "Torneo/Index")" class="flex items-center gap-3 px-4 py-2 rounded-lg bg-green-500/20 text-green-400 border-l-4 border-green-500">
+
+                    <a href="@Url.Action("Index", "Torneo")"
+                       class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg transition-colors @(If(currentController = "torneo", "active", ""))">
                         <i data-lucide="trophy"></i><span>Torneos</span>
                     </a>
-                    <a href="@Url.Action("Index", "Equipos")" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-700">
+
+                    <a href="@Url.Action("Index", "Equipos")"
+                       class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg transition-colors @(If(currentController = "equipos", "active", ""))">
                         <i data-lucide="users"></i><span>Equipos</span>
                     </a>
-                    <a href="@Url.Action("Index", "Partidos")" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-700">
+
+                    <a href="@Url.Action("Index", "Partido")"
+                       class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg transition-colors @(If(currentController = "partido", "active", ""))">
                         <i data-lucide="calendar-days"></i><span>Partidos</span>
                     </a>
-                    <a href="@Url.Action("Index", "Confederaciones")" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-700">
+
+                    <a href="@Url.Action("Index", "Confederaciones")"
+                       class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg transition-colors @(If(currentController = "confederaciones", "active", ""))">
                         <i data-lucide="globe-2"></i><span>Confederaciones</span>
                     </a>
-                    <a href="@Url.Action("Index", "Palmares")" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-700">
+
+                    <a href="@Url.Action("Index", "Palmares")"
+                       class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg transition-colors @(If(currentController = "palmares", "active", ""))">
                         <i data-lucide="award"></i><span>Palmarés</span>
                     </a>
-                    <a href="@Url.Action("Index", "Estadisticas")" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-700">
+
+                    <a href="@Url.Action("Index", "Estadisticas")"
+                       class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg transition-colors @(If(currentController = "estadisticas", "active", ""))">
                         <i data-lucide="bar-chart-3"></i><span>Estadísticas</span>
                     </a>
+
                     <div class="border-t border-gray-700 my-2"></div>
-                    <a href="@Url.Action("Index", "Configuracion")" class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-gray-700">
+
+                    <a href="@Url.Action("Index", "Configuracion")"
+                       class="nav-link flex items-center gap-3 px-4 py-2 rounded-lg transition-colors @(If(currentController = "configuracion", "active", ""))">
                         <i data-lucide="settings"></i><span>Configuración</span>
                     </a>
                 </nav>

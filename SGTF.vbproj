@@ -156,6 +156,7 @@
     <Compile Include="Confederacion.vb">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\PartidoController.vb" />
     <Compile Include="Controllers\TorneosController.vb" />
     <Compile Include="Equipo.vb">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -318,7 +319,10 @@
     <Content Include="Scripts\jquery-3.7.1.slim.min.js" />
     <Content Include="Scripts\jquery-3.7.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.7.1.min.map" />
+    <Content Include="Scripts\js\dashboard.js" />
+    <Content Include="Scripts\js\Partido.js" />
     <Content Include="Views\Torneo\Index.vbhtml" />
+    <Content Include="Views\Partido\Index.vbhtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -339,8 +343,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Views\_ViewStart.vbhtml" />
-    <Content Include="Views\Home\About.vbhtml" />
-    <Content Include="Views\Home\Contact.vbhtml" />
     <Content Include="Views\Home\Index.vbhtml" />
     <Content Include="Views\Shared\Error.vbhtml" />
     <Content Include="Views\Shared\_Layout.vbhtml" />

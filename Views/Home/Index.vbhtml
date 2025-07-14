@@ -1,33 +1,61 @@
 ﻿@Code
-    ViewData("Title") = "Home Page"
+    ViewBag.Title = "Dashboard"
+    Layout = "~/Views/Shared/_Layout.vbhtml"
 End Code
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<main id="main-content-area" class="flex-1 p-4 md:p-8 overflow-y-auto main-content">
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+    <div id="dashboard-view" class="content-section">
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-white">Dashboard</h2>
+                <p class="text-gray-400">Bienvenido al Sistema de Gestión de Torneos de Fútbol.</p>
+            </div>
+        </div>
+
+        <!-- Widgets -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div class="card p-6 rounded-xl flex items-center gap-6 bg-green-600 text-white shadow-lg">
+                <i data-lucide="trophy" class="w-12 h-12 opacity-80"></i>
+                <div>
+                    <p class="text-lg font-semibold">Torneos Activos</p>
+                    <p id="stat-activos" class="text-3xl font-bold">0</p>
+                </div>
+            </div>
+            <div class="card p-6 rounded-xl flex items-center gap-6 bg-gray-800 text-white">
+                <i data-lucide="users" class="w-12 h-12 text-green-400"></i>
+                <div>
+                    <p class="text-lg font-semibold text-gray-400">Equipos Registrados</p>
+                    <p id="stat-equipos" class="text-3xl font-bold text-white">0</p>
+                </div>
+            </div>
+            <div class="card p-6 rounded-xl flex items-center gap-6 bg-gray-800 text-white">
+                <img src="https://placehold.co/48x48/1f2937/ffffff?text=C" class="w-12 h-12 object-contain" alt="Logo Confederación" />
+                <div>
+                    <p class="text-lg font-semibold text-gray-400">Confederación</p>
+                    <p id="stat-confederacion" class="text-sm font-bold text-white">Cargando...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resultados Recientes -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 card p-6 rounded-xl text-white">
+                <h3 class="text-xl font-semibold mb-4">Resultados Recientes</h3>
+                <div class="space-y-3 text-sm">
+                    <!-- Se llenan dinámicamente con JS -->
+                </div>
+            </div>
+
+            <!-- Estadísticas destacadas -->
+            <div id="bloqueDestacado" class="card p-6 rounded-xl text-white"></div>
+
+        </div>
     </div>
 </main>
+
+@section Scripts
+    <script src="/scripts/jquery-3.7.1.min.js"></script>
+    <script src="/scripts/js/dashboard.js"></script>
+    <script>lucide.createIcons();</script>
+End Section
